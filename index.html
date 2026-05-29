@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COL · Mid-Year Pulse Survey · May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--surface:#161616;--card:#1c1c1c;--card2:#191919;--border:#272727;--border2:#2f2f2f;--cyan:#00AEEF;--cyan-dim:rgba(0,174,239,.10);--text:#efefef;--text2:#d0d0d0;--muted:#888;--green:#4caf7d;--green-bg:rgba(76,175,90,.12);--red:#e05252;--red-bg:rgba(224,82,82,.12);--amber:#f0a030;--amber-bg:rgba(240,160,48,.10);--gold:#FFD700;--purple:#a78bfa;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.5}
+.top-bar{background:#000;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-bottom:3px solid var(--cyan);min-height:80px}
+.brand{color:var(--cyan);font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;letter-spacing:.08em}
+.top-right{text-align:right}
+.report-title{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.report-sub{color:var(--cyan);font-family:'DM Mono',monospace;font-size:11px;margin-top:3px}
+.body{padding:24px 28px 48px}
+.section-label{font-size:11px;font-weight:700;color:var(--text2);letter-spacing:.12em;text-transform:uppercase;margin:28px 0 12px;padding-left:10px;border-left:3px solid var(--cyan)}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:28px}
+.kpi-card{background:#000;border-radius:6px;padding:14px 16px;border-bottom:3px solid var(--cyan)}
+.kpi-label{font-size:10px;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.07em;font-weight:700}
+.kpi-val{font-size:26px;font-weight:700;color:#fff;font-family:'Barlow Condensed',sans-serif;line-height:1.1}
+.kpi-sub{font-size:10px;margin-top:4px;font-weight:600;color:var(--muted)}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px 20px}
+.chart-title{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.10em;margin-bottom:16px}
+.flag-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.flag-card{border-radius:6px;padding:16px;border-left:4px solid}
+.flag-red{background:var(--red-bg);border-color:var(--red)}
+.flag-amber{background:var(--amber-bg);border-color:var(--amber)}
+.flag-green{background:var(--green-bg);border-color:var(--green)}
+.flag-blue{background:var(--cyan-dim);border-color:var(--cyan)}
+.flag-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.flag-red .flag-title{color:var(--red)}
+.flag-amber .flag-title{color:var(--amber)}
+.flag-green .flag-title{color:var(--green)}
+.flag-blue .flag-title{color:var(--cyan)}
+.flag-item{font-size:12px;color:var(--text2);margin-bottom:6px;padding-left:14px;position:relative;line-height:1.5}
+.flag-item::before{content:'›';position:absolute;left:0;font-weight:700}
+.flag-red .flag-item::before{color:var(--red)}
+.flag-amber .flag-item::before{color:var(--amber)}
+.flag-green .flag-item::before{color:var(--green)}
+.flag-blue .flag-item::before{color:var(--cyan)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:6px;margin-bottom:28px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead{background:#000}
+thead th{font-size:10px;font-weight:700;color:var(--cyan);text-align:left;padding:9px 10px;white-space:nowrap;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:var(--card2)}
+tbody tr:hover{background:rgba(0,174,239,.04)}
+td{padding:8px 10px;vertical-align:middle;color:var(--text);font-weight:500}
+td.c{text-align:center}
+.chip{display:inline-block;font-size:11px;font-weight:700;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:4px;min-width:36px;text-align:center}
+.chi{background:var(--green-bg);color:var(--green);border:1px solid rgba(76,175,90,.3)}
+.chm{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(240,160,48,.3)}
+.chl{background:var(--red-bg);color:var(--red);border:1px solid rgba(224,82,82,.3)}
+.db{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.ds{background:rgba(0,174,239,.12);color:var(--cyan);border:1px solid rgba(0,174,239,.25)}
+.dw{background:rgba(240,160,48,.10);color:var(--amber);border:1px solid rgba(240,160,48,.25)}
+.da{background:rgba(224,82,82,.12);color:var(--red);border:1px solid rgba(224,82,82,.25)}
+.dac{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.25)}
+.dsh{background:rgba(76,175,90,.12);color:var(--green);border:1px solid rgba(76,175,90,.25)}
+.dp{background:rgba(255,215,0,.10);color:var(--gold);border:1px solid rgba(255,215,0,.25)}
+.di{background:rgba(0,200,200,.10);color:#00cccc;border:1px solid rgba(0,200,200,.25)}
+.do{background:#1a1a1a;color:var(--muted);border:1px solid var(--border)}
+.quote-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:4px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:var(--text2);line-height:1.6;font-style:italic}
+.quote-dept{font-style:normal;font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.06em;margin-top:6px}
+.quote-block.red{border-left-color:var(--red)}
+.quote-block.red .quote-dept{color:var(--red)}
+.quote-block.grn{border-left-color:var(--green)}
+.quote-block.grn .quote-dept{color:var(--green)}
+.themes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px}
+.theme-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px}
+.theme-icon{font-size:20px;margin-bottom:8px}
+.theme-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+.theme-count{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:6px}
+.theme-desc{font-size:11.5px;color:var(--text2);line-height:1.5}
+/* CSS bar charts */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.bar-label{font-size:11px;color:var(--text2);flex-shrink:0;font-weight:600;white-space:nowrap}
+.bar-label-wide{width:150px}
+.bar-label-dept{width:110px}
+.bar-bg{flex:1;height:14px;background:var(--border2);border-radius:3px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:3px;transition:width .4s}
+.bar-val{font-size:11px;font-weight:700;font-family:'DM Mono',monospace;width:34px;text-align:right;flex-shrink:0}
+.dist-col{display:flex;flex-direction:column;align-items:center;flex:1;gap:4px}
+.dist-bar-bg{width:100%;background:var(--border2);border-radius:3px 3px 0 0;display:flex;align-items:flex-end;height:120px}
+.dist-bar-fill{width:100%;border-radius:3px 3px 0 0}
+.dist-label{font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;text-align:center}
+.dist-val{font-size:11px;font-weight:700;font-family:'DM Mono',monospace}
+.dist-wrap{display:flex;gap:6px;align-items:flex-end;height:150px;padding-bottom:4px}
+.footer{background:#000;border-top:1px solid var(--border);padding:14px 28px;font-size:10.5px;color:var(--muted);font-family:'DM Mono',monospace;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:800px){.charts-grid,.flag-grid,.themes-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="brand">COL INSIDE SALES</div>
+  <div class="top-right">
+    <div class="report-title">Mid-Year Pulse Survey — May 2026</div>
+    <div class="report-sub">37 Responses &middot; May 26–29, 2026 &middot; 7 Departments</div>
+    <div class="report-sub" style="color:var(--muted)" id="gen-date"></div>
+  </div>
+</div>
+<div class="body">
+
+<div class="section-label">Survey at a Glance</div>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-label">Overall Avg Score</div><div class="kpi-val" style="color:var(--amber)">3.44<span style="font-size:14px;color:var(--muted)">/5</span></div><div class="kpi-sub">Moderate — room to grow</div></div>
+  <div class="kpi-card"><div class="kpi-label">Total Responses</div><div class="kpi-val" style="color:var(--cyan)">37</div><div class="kpi-sub">7 departments</div></div>
+  <div class="kpi-card"><div class="kpi-label">High Satisfaction</div><div class="kpi-val" style="color:var(--green)">11</div><div class="kpi-sub">Score ≥4.0 (30%)</div></div>
+  <div class="kpi-card"><div class="kpi-label">Low Satisfaction</div><div class="kpi-val" style="color:var(--red)">9</div><div class="kpi-sub">Score ≤2.5 (24%)</div></div>
+  <div class="kpi-card"><div class="kpi-label">Lowest Metric</div><div class="kpi-val" style="color:var(--red)">3.05</div><div class="kpi-sub">Accountability</div></div>
+  <div class="kpi-card"><div class="kpi-label">Highest Metric</div><div class="kpi-val" style="color:var(--green)">4.11</div><div class="kpi-sub">Role Clarity</div></div>
+  <div class="kpi-card"><div class="kpi-label">Top Department</div><div class="kpi-val" style="color:var(--gold);font-size:18px">Purchasing</div><div class="kpi-sub">4.79 avg</div></div>
+  <div class="kpi-card"><div class="kpi-label">Needs Attention</div><div class="kpi-val" style="color:var(--red);font-size:18px">AR / Acctg</div><div class="kpi-sub">2.64–2.69 avg</div></div>
+</div>
+
+<div class="section-label">⚠ Urgent Items Requiring Leadership Review</div>
+<div class="flag-grid">
+  <div class="flag-card flag-red">
+    <div class="flag-title">🚨 Accounting — Camera Surveillance Complaint</div>
+    <div class="flag-item">Multiple Accounting employees report being watched via cameras by "Rosa," creating an uncomfortable, distrustful environment.</div>
+    <div class="flag-item">This department scored 1.0 average from two respondents — the lowest in the survey.</div>
+    <div class="flag-item">"We would kindly ask Rosa to stop monitoring us through the cameras."</div>
+  </div>
+  <div class="flag-card flag-red">
+    <div class="flag-title">🚨 Accounts Receivable — Supervisor Conduct</div>
+    <div class="flag-item">4 of 7 AR employees specifically describe supervisor behavior: excessive warnings, treating staff like children, undermining them in front of customers.</div>
+    <div class="flag-item">"Supervisor makes me feel dumb. What I say is always wrong."</div>
+    <div class="flag-item">Supervisor contradicts staff instructions with customers, damaging client relationships.</div>
+  </div>
+  <div class="flag-card flag-amber">
+    <div class="flag-title">⚠️ Named Employee Issues — Accounting / AR</div>
+    <div class="flag-item">Multiple respondents (including Shipping) name specific Accounting/AR staff for errors, dishonesty, and rude behavior toward customers and coworkers.</div>
+    <div class="flag-item">Customers reportedly leaving or refusing to buy due to negative Accounting interactions.</div>
+    <div class="flag-item">Separate documentation recommended — names are in the raw data.</div>
+  </div>
+  <div class="flag-card flag-amber">
+    <div class="flag-title">⚠️ Warehouse — Compensation Frustration</div>
+    <div class="flag-item">Warehouse employee: less than $1 raise in 2 years despite significant contributions. "It doesn't sit well with me."</div>
+    <div class="flag-item">Second respondent asks to bring back bonuses and address underperformers.</div>
+    <div class="flag-item">Flight risk — high-performing warehouse staff may leave if unaddressed.</div>
+  </div>
+</div>
+
+<div class="section-label">Metric Averages &amp; Score Distribution</div>
+<div class="charts-grid">
+  <div class="chart-card">
+    <div class="chart-title">Average Score by Category (All Departments, Scale 1–5)</div>
+    <div id="metric-bars"></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">Score Distribution — Individual Respondents</div>
+    <div id="dist-chart"></div>
+  </div>
+</div>
+
+<div class="section-label">Department Comparison</div>
+<div class="chart-card" style="margin-bottom:28px">
+  <div class="chart-title">Average Score by Department (sorted highest → lowest)</div>
+  <div id="dept-bars"></div>
+</div>
+
+<div class="section-label">Department Detail</div>
+<div class="table-wrap">
+  <table>
+    <thead><tr>
+      <th>Department</th><th style="text-align:center">N</th>
+      <th style="text-align:center">Role Clarity</th><th style="text-align:center">Lead Comm.</th>
+      <th style="text-align:center">Respected</th><th style="text-align:center">Accountable</th>
+      <th style="text-align:center">Pos. Direction</th><th style="text-align:center">Speak Up</th>
+      <th style="text-align:center">Trust Lead</th><th style="text-align:center">Overall</th>
+    </tr></thead>
+    <tbody id="dept-tbody"></tbody>
+  </table>
+</div>
+
+<div class="section-label">Top Themes from Open-Ended Responses</div>
+<div class="themes-grid">
+  <div class="theme-card"><div class="theme-icon">💬</div><div class="theme-title">Communication Gaps</div><div class="theme-count">~9 mentions</div><div class="theme-desc">Cross-department and leadership communication cited repeatedly. Employees want clearer expectations, regular meetings, and performance feedback. Suggestions ignored or require excessive documentation to be heard.</div></div>
+  <div class="theme-card"><div class="theme-icon">⚖️</div><div class="theme-title">Accountability &amp; Fairness</div><div class="theme-count">~8 mentions</div><div class="theme-desc">Rules not applied equally — leaders and favorites are protected while front-line staff face strict enforcement. Frustration with inconsistent policy and excessive warnings for minor issues.</div></div>
+  <div class="theme-card"><div class="theme-icon">💰</div><div class="theme-title">Compensation &amp; Recognition</div><div class="theme-count">~6 mentions</div><div class="theme-desc">Pay raises feel inadequate relative to contributions. Warehouse specifically flagged. Requests for written goals with real compensation tied to performance. Bonuses mentioned.</div></div>
+  <div class="theme-card"><div class="theme-icon">👥</div><div class="theme-title">Staffing &amp; Workload</div><div class="theme-count">~5 mentions</div><div class="theme-desc">Short-staffing creates scrambles and service lapses. Need buffer drivers/vehicles per large warehouse. Cross-training suggested (drivers ↔ warehouse). Underperformers slowing teams down.</div></div>
+  <div class="theme-card"><div class="theme-icon">📦</div><div class="theme-title">Parts Inventory &amp; Pricing</div><div class="theme-count">~3 mentions</div><div class="theme-desc">Sales reps and drivers report customers complaining about parts availability declining and prices exceeding dealerships. Losing clients as a result. New product orders increased but insufficient.</div></div>
+  <div class="theme-card"><div class="theme-icon">🔄</div><div class="theme-title">Change Fatigue</div><div class="theme-count">~3 mentions</div><div class="theme-desc">Positive direction acknowledged but pace of constant change is stressful. Employees want projects finished before new ones start. "We should complete what we start, not leave projects half-done."</div></div>
+</div>
+
+<div class="section-label">✓ Positive Signals &amp; Momentum to Build On</div>
+<div class="flag-grid">
+  <div class="flag-card flag-green">
+    <div class="flag-title">SoCal Restructuring — Widely Praised</div>
+    <div class="flag-item">Multiple Sales respondents call out the new SoCal structure as one of the best decisions: "having the right people in the right positions is crucial."</div>
+    <div class="flag-item">Recent leadership changes in the past 2–3 weeks also viewed positively by Sales.</div>
+  </div>
+  <div class="flag-card flag-green">
+    <div class="flag-title">Company Direction — Generally Optimistic</div>
+    <div class="flag-item">Even lower-scoring respondents acknowledge the company is "heading in the right direction."</div>
+    <div class="flag-item">Purchasing (4.79) and IT (4.43) report high satisfaction across the board.</div>
+    <div class="flag-item">Customer service improvement noted over the last 1–2 years.</div>
+  </div>
+  <div class="flag-card flag-blue">
+    <div class="flag-title">Standout Managers Recognized</div>
+    <div class="flag-item">Nerhit D. (Accounting) specifically praised: "very patient manager, every task explained step-by-step, all questions answered."</div>
+    <div class="flag-item">Purchasing cites strong trust and alignment with leadership direction.</div>
+  </div>
+  <div class="flag-card flag-blue">
+    <div class="flag-title">Actionable Quick Wins Offered</div>
+    <div class="flag-item">Biweekly/monthly manager crew meetings to increase engagement.</div>
+    <div class="flag-item">Written branch goals. Paperless operations. Better driver tablets. PM delivery routes for underutilized drivers.</div>
+    <div class="flag-item">Low-cost, high-impact ideas worth evaluating immediately.</div>
+  </div>
+</div>
+
+<div class="section-label">Selected Verbatim Responses</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px">
+  <div>
+    <div class="quote-block grn">"Our customer service has definitely improved over the past 1–2 years but we constantly run into slumps because we are short handed... We should count on at least 1 person and 1 vehicle being out everyday so we're not overloading routes."<div class="quote-dept">Sales</div></div>
+    <div class="quote-block grn">"The new structure in Southern California is one of the best decisions made — having the right people in the right positions is crucial."<div class="quote-dept">Sales</div></div>
+    <div class="quote-block grn">"I have seen good changes put in place. The growth with Crash and the direction the company is going. Great to see the growth in the last 6 months."<div class="quote-dept">Warehouse</div></div>
+    <div class="quote-block">"I'd really appreciate continued emphasis on professional growth. Mentorship, feedback, and exposure to new challenges help me stay engaged and improve my skills."<div class="quote-dept">IT</div></div>
+  </div>
+  <div>
+    <div class="quote-block red">"We would kindly ask Rosa to stop monitoring us through the cameras, as it is making us feel uncomfortable and watched. We would appreciate a more comfortable and trusting work environment."<div class="quote-dept" style="color:var(--red)">Accounting</div></div>
+    <div class="quote-block red">"Supervisor makes me feel dumb. What I say is always wrong... when she talks with a customer she goes against what she told me to tell them — it makes us look bad."<div class="quote-dept" style="color:var(--red)">Accounts Receivable</div></div>
+    <div class="quote-block">"The constant changes from sales and warehouse are really stressful. Too much change can be overwhelming. We should terminate what we start, not leave projects half-done."<div class="quote-dept">Sales</div></div>
+    <div class="quote-block">"I've done a lot to bring up the warehouse and inventory and it got overlooked when raises were given. Less than a dollar raise in 2 years is crazy to me."<div class="quote-dept">Warehouse</div></div>
+  </div>
+</div>
+
+<div class="section-label">All Responses — Score Summary</div>
+<div class="table-wrap">
+  <table>
+    <thead><tr>
+      <th>#</th><th>Department</th>
+      <th style="text-align:center">Role</th><th style="text-align:center">Lead Comm</th>
+      <th style="text-align:center">Respected</th><th style="text-align:center">Accountable</th>
+      <th style="text-align:center">Pos Dir</th><th style="text-align:center">Speak Up</th>
+      <th style="text-align:center">Morale</th><th style="text-align:center">Trust</th>
+      <th style="text-align:center">Avg</th>
+    </tr></thead>
+    <tbody id="all-tbody"></tbody>
+  </table>
+</div>
+
+</div>
+<div class="footer">
+  <div>COL Mid-Year Pulse Survey &middot; 37 Submissions &middot; May 26–29, 2026 &middot; Confidential — For Leadership Use Only</div>
+  <div id="footer-date"></div>
+</div>
+
+<script>
+document.getElementById('gen-date').textContent = 'Generated ' + new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+document.getElementById('footer-date').textContent = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+
+var data = [
+  {dept:'Warehouse',   role:5,comm:3,resp:4,acct:3,dir:3,speak:4,morale:'Good',   trust:3},
+  {dept:'Warehouse',   role:3,comm:3,resp:4,acct:2,dir:3,speak:2,morale:'Poor',   trust:2},
+  {dept:'Sales',       role:4,comm:3,resp:4,acct:4,dir:3,speak:3,morale:'Average',trust:4},
+  {dept:'Shipping',    role:5,comm:3,resp:5,acct:4,dir:4,speak:5,morale:'Excellent',trust:4},
+  {dept:'AR',          role:4,comm:3,resp:4,acct:3,dir:3,speak:3,morale:'Good',   trust:4},
+  {dept:'Sales',       role:5,comm:4,resp:5,acct:5,dir:5,speak:5,morale:'Good',   trust:5},
+  {dept:'Sales',       role:5,comm:5,resp:5,acct:5,dir:5,speak:5,morale:'Good',   trust:5},
+  {dept:'Sales',       role:3,comm:3,resp:4,acct:4,dir:3,speak:3,morale:'Average',trust:4},
+  {dept:'Accounting',  role:5,comm:5,resp:5,acct:5,dir:3,speak:4,morale:'Average',trust:3},
+  {dept:'Accounting',  role:5,comm:3,resp:5,acct:2,dir:3,speak:5,morale:'Poor',   trust:3},
+  {dept:'Sales',       role:5,comm:4,resp:5,acct:5,dir:5,speak:5,morale:'Good',   trust:4},
+  {dept:'Sales',       role:5,comm:5,resp:5,acct:5,dir:5,speak:5,morale:'Excellent',trust:5},
+  {dept:'Sales',       role:4,comm:2,resp:2,acct:2,dir:1,speak:2,morale:'Poor',   trust:2},
+  {dept:'AR',          role:4,comm:3,resp:3,acct:3,dir:3,speak:3,morale:'Average',trust:3},
+  {dept:'Shipping',    role:4,comm:3,resp:2,acct:1,dir:3,speak:3,morale:'Average',trust:3},
+  {dept:'Accounting',  role:1,comm:1,resp:1,acct:1,dir:1,speak:1,morale:'Very Poor',trust:1},
+  {dept:'AR',          role:4,comm:3,resp:3,acct:3,dir:3,speak:2,morale:'Average',trust:2},
+  {dept:'AR',          role:4,comm:1,resp:1,acct:1,dir:1,speak:1,morale:'Average',trust:1},
+  {dept:'AR',          role:5,comm:4,resp:4,acct:4,dir:5,speak:5,morale:'Good',   trust:4},
+  {dept:'Sales',       role:4,comm:3,resp:5,acct:3,dir:2,speak:3,morale:'Excellent',trust:4},
+  {dept:'Other',       role:5,comm:4,resp:4,acct:1,dir:4,speak:3,morale:'Good',   trust:5},
+  {dept:'Sales',       role:5,comm:1,resp:2,acct:1,dir:3,speak:2,morale:'Very Poor',trust:2},
+  {dept:'Sales',       role:3,comm:4,resp:5,acct:4,dir:4,speak:3,morale:'Excellent',trust:4},
+  {dept:'Shipping',    role:4,comm:4,resp:4,acct:4,dir:5,speak:4,morale:'Average',trust:4},
+  {dept:'Shipping',    role:5,comm:5,resp:5,acct:1,dir:4,speak:2,morale:'Good',   trust:3},
+  {dept:'Warehouse',   role:1,comm:1,resp:1,acct:1,dir:1,speak:1,morale:'Very Poor',trust:1},
+  {dept:'Purchasing',  role:4,comm:5,resp:5,acct:5,dir:5,speak:4,morale:'Good',   trust:5},
+  {dept:'IT',          role:5,comm:4,resp:5,acct:5,dir:4,speak:5,morale:'Excellent',trust:5},
+  {dept:'Other',       role:4,comm:3,resp:1,acct:1,dir:2,speak:1,morale:'Poor',   trust:2},
+  {dept:'Sales',       role:5,comm:5,resp:5,acct:5,dir:5,speak:5,morale:'Good',   trust:5},
+  {dept:'Accounting',  role:3,comm:1,resp:1,acct:1,dir:2,speak:1,morale:'Very Poor',trust:2},
+  {dept:'AR',          role:4,comm:2,resp:2,acct:2,dir:3,speak:2,morale:'Poor',   trust:1},
+  {dept:'AR',          role:3,comm:1,resp:1,acct:1,dir:1,speak:1,morale:'Average',trust:1},
+  {dept:'Purchasing',  role:5,comm:5,resp:4,acct:5,dir:5,speak:5,morale:'Good',   trust:5},
+  {dept:'Warehouse',   role:3,comm:3,resp:4,acct:3,dir:4,speak:5,morale:'Average',trust:4},
+  {dept:'IT',          role:5,comm:4,resp:4,acct:4,dir:5,speak:3,morale:'Average',trust:4},
+  {dept:'Warehouse',   role:4,comm:5,resp:5,acct:4,dir:5,speak:5,morale:'Good',   trust:5}
+];
+
+var moraleMap = {'Very Poor':1,'Poor':2,'Average':3,'Good':4,'Excellent':5};
+function avg7(r){return (r.role+r.comm+r.resp+r.acct+r.dir+r.speak+r.trust)/7;}
+function chipClass(v){return v>=4?'chip chi':v>=3?'chip chm':'chip chl';}
+function deptBadge(d){var m={Sales:'db ds',Warehouse:'db dw',AR:'db da',Accounting:'db dac',Shipping:'db dsh',Purchasing:'db dp',IT:'db di'};return m[d]||'db do';}
+function barColor(v){if(v>=4)return '#4caf7d';if(v>=3.5)return '#00AEEF';if(v>=3)return '#f0a030';return '#e05252';}
+
+// --- METRIC BARS ---
+var metrics = [
+  {label:'Role Clarity',     val:4.11},
+  {label:'Feel Respected',   val:3.62},
+  {label:'Pos. Direction',   val:3.41},
+  {label:'Trust Leadership', val:3.35},
+  {label:'Lead. Comm.',      val:3.27},
+  {label:'Comfortable Speaking Up', val:3.27},
+  {label:'Accountability',   val:3.05}
+];
+var mb = document.getElementById('metric-bars');
+metrics.forEach(function(m){
+  var pct = (m.val/5*100).toFixed(1);
+  var row = document.createElement('div');
+  row.className = 'bar-row';
+  row.innerHTML = '<span class="bar-label bar-label-wide">'+m.label+'</span>'
+    +'<div class="bar-bg"><div class="bar-fill" style="width:'+pct+'%;background:'+barColor(m.val)+'"></div></div>'
+    +'<span class="bar-val" style="color:'+barColor(m.val)+'">'+m.val.toFixed(2)+'</span>';
+  mb.appendChild(row);
+});
+
+// --- DISTRIBUTION ---
+var avgs = data.map(function(r){return avg7(r);});
+var bins = [[1,1.5],[1.5,2],[2,2.5],[2.5,3],[3,3.5],[3.5,4],[4,4.5],[4.5,5.01]];
+var binLabels = ['1.0–1.5','1.5–2.0','2.0–2.5','2.5–3.0','3.0–3.5','3.5–4.0','4.0–4.5','4.5–5.0'];
+var binColors = ['#e05252','#e05252','#f0a030','#f0a030','#00AEEF','#00AEEF','#4caf7d','#4caf7d'];
+var counts = bins.map(function(b){return avgs.filter(function(v){return v>=b[0]&&v<b[1];}).length;});
+var maxCount = Math.max.apply(null,counts);
+var distWrap = document.createElement('div');
+distWrap.className = 'dist-wrap';
+counts.forEach(function(c,i){
+  var pct = maxCount>0?(c/maxCount*100):0;
+  var col = document.createElement('div');
+  col.className = 'dist-col';
+  col.innerHTML = '<div class="dist-bar-bg"><div class="dist-bar-fill" style="height:'+pct+'%;background:'+binColors[i]+'"></div></div>'
+    +'<div class="dist-val" style="color:'+binColors[i]+'">'+c+'</div>'
+    +'<div class="dist-label">'+binLabels[i]+'</div>';
+  distWrap.appendChild(col);
+});
+document.getElementById('dist-chart').appendChild(distWrap);
+
+// --- DEPT BARS ---
+var deptList = ['Purchasing','IT','Sales','Shipping','Warehouse','AR','Accounting'];
+var deptColors = {Purchasing:'#FFD700',IT:'#00cccc',Sales:'#00AEEF',Shipping:'#4caf7d',Warehouse:'#f0a030',AR:'#e05252',Accounting:'#a78bfa'};
+var deptStats = {};
+deptList.forEach(function(d){
+  var rows = data.filter(function(r){return r.dept===d;});
+  if(!rows.length){deptStats[d]={n:0,role:0,comm:0,resp:0,acct:0,dir:0,speak:0,trust:0,avg:0};return;}
+  function a(f){return rows.reduce(function(s,r){return s+r[f];},0)/rows.length;}
+  var overall=(a('role')+a('comm')+a('resp')+a('acct')+a('dir')+a('speak')+a('trust'))/7;
+  deptStats[d]={n:rows.length,role:a('role'),comm:a('comm'),resp:a('resp'),acct:a('acct'),dir:a('dir'),speak:a('speak'),trust:a('trust'),avg:overall};
+});
+var db = document.getElementById('dept-bars');
+deptList.forEach(function(d){
+  var dd = deptStats[d];
+  if(!dd.n) return;
+  var pct = (dd.avg/5*100).toFixed(1);
+  var row = document.createElement('div');
+  row.className = 'bar-row';
+  row.innerHTML = '<span class="bar-label bar-label-dept">'+d+' <span style="font-size:9px;color:var(--muted)">(n='+dd.n+')</span></span>'
+    +'<div class="bar-bg"><div class="bar-fill" style="width:'+pct+'%;background:'+deptColors[d]+'"></div></div>'
+    +'<span class="bar-val" style="color:'+deptColors[d]+'">'+dd.avg.toFixed(2)+'</span>';
+  db.appendChild(row);
+});
+
+// --- DEPT TABLE ---
+var dtb = document.getElementById('dept-tbody');
+deptList.forEach(function(d){
+  var dd = deptStats[d];
+  if(!dd.n) return;
+  var tr = document.createElement('tr');
+  tr.innerHTML = '<td><span class="'+deptBadge(d)+'">'+d+'</span></td>'
+    +'<td class="c" style="color:var(--muted);font-family:\'DM Mono\',monospace">'+dd.n+'</td>'
+    +'<td class="c"><span class="'+chipClass(dd.role)+'">'+dd.role.toFixed(1)+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(dd.comm)+'">'+dd.comm.toFixed(1)+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(dd.resp)+'">'+dd.resp.toFixed(1)+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(dd.acct)+'">'+dd.acct.toFixed(1)+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(dd.dir)+'">'+dd.dir.toFixed(1)+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(dd.speak)+'">'+dd.speak.toFixed(1)+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(dd.trust)+'">'+dd.trust.toFixed(1)+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(dd.avg)+'" style="font-weight:700">'+dd.avg.toFixed(2)+'</span></td>';
+  dtb.appendChild(tr);
+});
+
+// --- ALL RESPONSES TABLE ---
+var atb = document.getElementById('all-tbody');
+data.forEach(function(r,i){
+  var a = avg7(r).toFixed(2);
+  var tr = document.createElement('tr');
+  tr.innerHTML = '<td style="color:var(--muted);font-family:\'DM Mono\',monospace">'+(i+1)+'</td>'
+    +'<td><span class="'+deptBadge(r.dept)+'">'+r.dept+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(r.role)+'">'+r.role+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(r.comm)+'">'+r.comm+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(r.resp)+'">'+r.resp+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(r.acct)+'">'+r.acct+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(r.dir)+'">'+r.dir+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(r.speak)+'">'+r.speak+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(moraleMap[r.morale])+'">'+r.morale+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(r.trust)+'">'+r.trust+'</span></td>'
+    +'<td class="c"><span class="'+chipClass(parseFloat(a))+'" style="font-weight:700">'+a+'</span></td>';
+  atb.appendChild(tr);
+});
+</script>
+</body>
+</html>
